@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "hackaton-gentleman-programming": {
+      "hosting": {
+        "hackathon": [
+          "hackaton-gentleman-programming"
+        ]
+      }
+    }
+  }
+}
