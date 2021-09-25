@@ -1,0 +1,6 @@
+<h1>Hackathon Gentleman Programming 2021</h1>
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+  <input type="text" formControlName="username">
+  <input type="password" formControlName="password">
+  <button [disabled]="!loginForm.valid" >Enviar</button>
+</form>
