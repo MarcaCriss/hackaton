@@ -1,0 +1,42 @@
+.container {
+  background: black;
+  padding: 90px 90px 0px 90px;
+  height: 100%;
+}
+
+.content {
+  color: #FFF;
+}
+
+.content-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: #D10070;
+  padding-right: 32px;
+}
+
+.subtitle {
+  color: #D10070;
+  margin-bottom: 10px;
+  flex-grow: 1;
+}
+
+.button {
+  width: 157px;
+  border: 0;
+  height: 39px;
+  background: #EB1889;
+  color: #FFF;
+}
+
+.description {
+  height: 69px;
+  color: #000000;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}

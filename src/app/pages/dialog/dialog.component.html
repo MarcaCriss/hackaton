@@ -1,0 +1,20 @@
+<div class="content">
+  <h1 mat-dialog-title>Crear bootcamp</h1>
+  <div mat-dialog-content>
+    <form action="">
+      <mat-form-field appearance="standard">
+        <mat-label>Nombre del bootcamp</mat-label>
+        <input matInput type="text" class="input-full"/>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="standard">
+        <mat-label>Descripcion del bootcamp</mat-label>
+        <input matInput type="text" class="input-full" />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Crear</button>
+  </div>
+</div>

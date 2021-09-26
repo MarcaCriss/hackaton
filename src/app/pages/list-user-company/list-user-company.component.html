@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="content-head">
+    <h1 class="title">Bootcamps</h1>
+    <h3 class="subtitle">{{ subtitleName }}</h3>
+    <button class="button" (click)="openDialog()">Crear bootcamp</button>
+  </div>
+  <mat-progress-spinner
+        class="example-margin"
+        *ngIf="!loading"
+        [color]="color"
+        [mode]="mode"
+        [value]="value"
+  ></mat-progress-spinner>
+  <div *ngIf="loading">
+    <div class="content" *ngFor="let bootcamp of bootcamps">
+      <h3 class="subtitle">{{ bootcamp.id_empresa }}</h3>
+      <p class="description">{{ bootcamp.descripcion }}</p>
+      <button class="button action" *ngIf="nameRoute === 'usuario'">Anotarse</button>
+    </div>
+  </div>
+</div>
