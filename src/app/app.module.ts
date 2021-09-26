@@ -21,7 +21,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
   declarations: [
     AppComponent,
     ListUserCompanyComponent,
-    DialogComponent
+    DialogComponent,
     LoginComponent,
     UsuarioComponent,
     LandingPagesComponent,
@@ -32,7 +32,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
     AngularFirestoreModule,
     ReactiveFormsModule
   ],
