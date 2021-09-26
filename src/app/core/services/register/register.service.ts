@@ -2,7 +2,7 @@ import { ResponseObject } from './../../models/responseObject';
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { User } from '../../models/User';
+import { User } from '../../models/user';
 
 @Injectable({providedIn: 'root'})
 export class RegisterService {
@@ -12,40 +12,33 @@ export class RegisterService {
     ) {}
 
     register(user: User){
-      return new Promise<any>(resolve =>{
-        this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
-          .then((authResponse: any) => {
+      return new Promise<any>(async resolve =>{
+        try{
+          const responseAuth = await this.afAuth.createUserWithEmailAndPassword(user.email, (user.password || ''))
 
-              const payload = {
-                ...user,
-                authUid: authResponse.user.uid
-              }
+          const userAux = { ...user };
+          delete userAux.password;
 
-              this.firestore
-                  .collection("users")
-                  .add(payload)
-                  .then((res: any) => {
-                    const response: ResponseObject = {
-                      success: true,
-                      payload: res
-                    };
-                    return resolve(response);
-                  })
-                  .catch((error: any) => {
-                    const response: ResponseObject = {
-                      success: false,
-                      payload: error
-                    };
-                    return resolve(response);
-                  })
-          })
-          .catch((error: any) => {
-            const response: ResponseObject = {
-              success: false,
-              payload: error
-            };
-            return resolve(response);
-          })
+          await this.firestore
+            .collection("users")
+            .add({
+              ...userAux,
+              authUid: responseAuth.user?.uid
+            });
+
+          const response: ResponseObject = {
+            success: true
+          };
+
+          return resolve(response);
+
+        }catch(error){
+          const response: ResponseObject = {
+            success: false,
+            payload: error
+          };
+          return resolve(response);
+        }
     });
   }
 }

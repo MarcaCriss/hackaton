@@ -6,6 +6,6 @@ export interface User {
     linkedin: any,
     country: string,
     repository: string,
-    password: string,
+    password?: string,
     description: string
   }

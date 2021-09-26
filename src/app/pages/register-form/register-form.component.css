@@ -35,6 +35,10 @@
     width: 48%;
 }
 
+.input-full-container{
+    width: 100%;
+}
+
 .form-row div input{
     width: 100%;
     height: 3rem;

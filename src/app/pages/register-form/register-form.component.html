@@ -16,19 +16,6 @@
                 </div>
             </div>
             <div class="input-container">
-                <input type="text" placeholder="Apellido" formControlName="lastName"/>
-                <div *ngIf="createUserForm.controls.lastName.status === 'INVALID'
-                            && createUserForm.controls.lastName.touched === true">
-                    <small class="text-danger"
-                        *ngIf="createUserForm.controls.lastName.errors?.required === true">
-                        Este campo es requerido
-                    </small>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="input-container">
                 <input type="text" placeholder="Correo Elextrónico" formControlName="email"/>
                 <div *ngIf="createUserForm.controls.email.status === 'INVALID'
                             && createUserForm.controls.email.touched === true">
@@ -38,6 +25,9 @@
                     </small>
                 </div>
             </div>
+        </div>
+
+        <div class="form-row">
             <div class="input-container">
                 <input type="text" placeholder="LinkedIn" formControlName="linkedin"/>
                 <div *ngIf="createUserForm.controls.linkedin.status === 'INVALID'
@@ -48,9 +38,6 @@
                     </small>
                 </div>
             </div>
-        </div>
-
-        <div class="form-row">
             <div class="input-container">
                 <input type="text" placeholder="País" formControlName="country"/>
                 <div *ngIf="createUserForm.controls.country.status === 'INVALID'
@@ -61,12 +48,15 @@
                     </small>
                 </div>
             </div>
-            <div class="input-container">
-                <input type="text" placeholder="Repositorio" formControlName="repository"/>
-                <div *ngIf="createUserForm.controls.repository.status === 'INVALID'
-                            && createUserForm.controls.repository.touched === true">
+        </div>
+
+        <div class="form-row">
+            <div class="input-full-container">
+                <input type="text" [placeholder]="type == 'user' ? 'Repositorio' : 'Página Web'" formControlName="link"/>
+                <div *ngIf="createUserForm.controls.link.status === 'INVALID'
+                            && createUserForm.controls.link.touched === true">
                     <small class="text-danger"
-                        *ngIf="createUserForm.controls.repository.errors?.required === true">
+                        *ngIf="createUserForm.controls.link.errors?.required === true">
                         Este campo es requerido
                     </small>
                 </div>

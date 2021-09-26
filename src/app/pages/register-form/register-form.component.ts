@@ -33,11 +33,10 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
     this.createUserForm = this.fb.group({
       name: new FormControl('',[Validators.required]),
-      lastName: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.required]),
       linkedin: new FormControl('',[Validators.required]),
       country: new FormControl('',[Validators.required]),
-      repository: new FormControl('',[Validators.required]),
+      link: new FormControl('',[Validators.required]),
       password: new FormControl('',[Validators.required]),
       description: new FormControl('',[Validators.required]),
       rePassword: new FormControl('',[Validators.required]),
@@ -55,6 +54,7 @@ export class RegisterFormComponent implements OnInit {
     delete payload.rePassword;
 
     const response = await this.registerService.register(payload);
+
     if(response.success === true){
       this.route.navigate(['/login']);
     }
