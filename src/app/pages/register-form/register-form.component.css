@@ -1,0 +1,67 @@
+.register-form-container{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    margin: 0 10rem;
+}
+
+.form-title{
+    margin-bottom: 3rem;
+}
+
+.form-title span{
+    font-size: 20px;
+    color: purple;
+    font-weight: bold;
+}
+
+.form-container{
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+}
+
+.form-row{
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    margin: 1rem 0;
+}
+
+.input-container{
+    width: 48%;
+}
+
+.form-row div input{
+    width: 100%;
+    height: 3rem;
+}
+
+.textarea-container{
+    width: 100%;
+}
+
+.form-row div textarea{
+    width: 100%;
+}
+
+.button-container{
+    width: 100%;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.form-row div button{
+    height: 3rem;
+    background-color: purple;
+    border: 1px solid purple;
+    color: #FFF;
+    width: 200px;
+}
+
+.text-danger{
+    color: #FFF;
+}
