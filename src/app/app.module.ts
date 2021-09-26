@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { LandingPagesComponent } from './pages/landing-pages/landing-pages.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { RegisterFormComponent } from './pages/register-form/register-form.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
     AppComponent,
     LoginComponent,
     UsuarioComponent,
-    LandingPagesComponent
+    LandingPagesComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

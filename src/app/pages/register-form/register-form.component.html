@@ -1,0 +1,46 @@
+<div class="register-form-container">
+    <div class="form-title">
+        <span>Ingrese datos del {{type == 'user' ? 'Usuario' : 'Empresa'}}</span>
+    </div>
+    <div class="form-container" [formGroup]="createUser">
+        <div class="form-row">
+            <div class="input-container">
+                <input type="text" placeholder="Usuario" formControlName="username"/>
+                <span ng-if="createUser.controls.country.status === 'INVALID'" style="color: #FFF">{{createUser.controls.country.value}}</span>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="LinkedIn" formControlName="linkedin"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="input-container">
+                <input type="text" placeholder="País" formControlName="country"/>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Repositorio" formControlName="repository"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="input-container">
+                <input type="text" placeholder="Contraseña" formControlName="password"/>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Ingrese contraseña nuevamente" formControlName="rePassword"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="textarea-container">
+                <textarea rows="7" placeholder="Ingrese una breve descripción" formControlName="description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="button-container">
+                <button (click)="handleRegister()">Registrarse</button>
+            </div>
+        </div>
+    </div>
+</div>
