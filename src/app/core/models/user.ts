@@ -1,7 +1,11 @@
 export interface User {
-  uid: string;
-  email: string;
-  displayName: string;
-  photoURL: string;
-  emailVerified: boolean;
-}
+    uid: any,
+    name: any,
+    lastName: any,
+    email: string,
+    linkedin: any,
+    country: string,
+    repository: string,
+    password: string,
+    description: string
+  }

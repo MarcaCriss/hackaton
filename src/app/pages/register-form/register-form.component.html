@@ -2,44 +2,120 @@
     <div class="form-title">
         <span>Ingrese datos del {{type == 'user' ? 'Usuario' : 'Empresa'}}</span>
     </div>
-    <div class="form-container" [formGroup]="createUser">
+    <div class="form-container" [formGroup]="createUserForm">
+
         <div class="form-row">
             <div class="input-container">
-                <input type="text" placeholder="Usuario" formControlName="username"/>
-                <span ng-if="createUser.controls.country.status === 'INVALID'" style="color: #FFF">{{createUser.controls.country.value}}</span>
+                <input type="text" placeholder="Nombre" formControlName="name"/>
+                <div *ngIf="createUserForm.controls.name.status === 'INVALID'
+                            && createUserForm.controls.name.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.name.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Apellido" formControlName="lastName"/>
+                <div *ngIf="createUserForm.controls.lastName.status === 'INVALID'
+                            && createUserForm.controls.lastName.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.lastName.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="input-container">
+                <input type="text" placeholder="Correo Elextrónico" formControlName="email"/>
+                <div *ngIf="createUserForm.controls.email.status === 'INVALID'
+                            && createUserForm.controls.email.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.email.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
             </div>
             <div class="input-container">
                 <input type="text" placeholder="LinkedIn" formControlName="linkedin"/>
+                <div *ngIf="createUserForm.controls.linkedin.status === 'INVALID'
+                            && createUserForm.controls.linkedin.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.linkedin.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
             </div>
         </div>
 
         <div class="form-row">
             <div class="input-container">
                 <input type="text" placeholder="País" formControlName="country"/>
+                <div *ngIf="createUserForm.controls.country.status === 'INVALID'
+                            && createUserForm.controls.country.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.country.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
             </div>
             <div class="input-container">
                 <input type="text" placeholder="Repositorio" formControlName="repository"/>
+                <div *ngIf="createUserForm.controls.repository.status === 'INVALID'
+                            && createUserForm.controls.repository.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.repository.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
             </div>
         </div>
 
         <div class="form-row">
             <div class="input-container">
-                <input type="text" placeholder="Contraseña" formControlName="password"/>
+                <input type="password" placeholder="Contraseña" formControlName="password"/>
+                <div *ngIf="createUserForm.controls.password.status === 'INVALID'
+                            && createUserForm.controls.password.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.password.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
             </div>
             <div class="input-container">
-                <input type="text" placeholder="Ingrese contraseña nuevamente" formControlName="rePassword"/>
+                <input type="password" placeholder="Ingrese contraseña nuevamente" formControlName="rePassword"/>
+                <div *ngIf="createUserForm.controls.rePassword.status === 'INVALID'
+                            && createUserForm.controls.rePassword.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.rePassword.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.rePassword.errors?.confirmedValidator === true">
+                        Las contraseñas deben ser iguales
+                    </small>
+                </div>
             </div>
         </div>
 
         <div class="form-row">
             <div class="textarea-container">
                 <textarea rows="7" placeholder="Ingrese una breve descripción" formControlName="description"></textarea>
+                <div *ngIf="createUserForm.controls.description.status === 'INVALID'
+                            && createUserForm.controls.description.touched === true">
+                    <small class="text-danger"
+                        *ngIf="createUserForm.controls.description.errors?.required === true">
+                        Este campo es requerido
+                    </small>
+                </div>
             </div>
         </div>
 
         <div class="form-row">
             <div class="button-container">
-                <button (click)="handleRegister()">Registrarse</button>
+                <button (click)="handleRegister()" [disabled]="this.createUserForm.status === 'INVALID'">Registrarse</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseAuthUser } from './firebase-auth-user';
+import { FirebaseAuthUser } from '../../models/firebaseAuthUser';
 
 @Injectable({ providedIn: 'root' })
 export class AuthSession {
