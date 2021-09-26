@@ -5,6 +5,7 @@ import { LandingPagesComponent } from './pages/landing-pages/landing-pages.compo
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { ListUserCompanyComponent } from './pages/list-user-company/list-user-company.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,11 @@ const routes: Routes = [
   {
     path: 'register/:type',
     component: RegisterFormComponent
-  }
-
+  },
+  {
+    path: 'list/:name',
+    component: ListUserCompanyComponent
+  },
 ];
 
 @NgModule({
