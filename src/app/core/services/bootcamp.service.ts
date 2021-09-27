@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
-import { Query } from '../models/query';
-import { query, orderBy, limit, getDocs } from 'firebase/firestore';
+import { Bootcamp } from '../models/bootcamp';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -41,5 +41,14 @@ export class BootcampService {
           })
         })
       );
+  }
+
+  createBootcamps(bootcamp: Bootcamp) {
+      this.af.collection('bootcamps').add({
+        id_empresa: bootcamp.name,
+        descripcion: bootcamp.descripcion
+      })
+      .then( data => {  })
+      .catch(error => console.log(error));
   }
 }

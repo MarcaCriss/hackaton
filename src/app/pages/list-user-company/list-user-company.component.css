@@ -1,7 +1,7 @@
 .container {
   background: black;
   padding: 90px 90px 0px 90px;
-  height: 100%;
+  height: 100vh;
 }
 
 .content {
