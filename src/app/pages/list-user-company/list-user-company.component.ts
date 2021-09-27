@@ -1,17 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BootcampService } from '../../core/services/bootcamp.service';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { map, take, takeUntil, tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-list-user-company',
   templateUrl: './list-user-company.component.html',
-  styleUrls: ['./list-user-company.component.css']
+  styleUrls: ['./list-user-company.component.css'],
 })
 export class ListUserCompanyComponent implements OnInit, OnDestroy {
   bootcamps: any = [];
@@ -23,6 +24,12 @@ export class ListUserCompanyComponent implements OnInit, OnDestroy {
   value: number = 50;
   loading: boolean = false;
 
+  /************** */
+  bootcamps$ = new BehaviorSubject<any[]>([]);
+  batch = 7;
+  lastKey = 1;
+  finished: boolean = false;
+
   constructor(
     private bootcampService: BootcampService,
     private activatedRoute: ActivatedRoute,
@@ -32,18 +39,32 @@ export class ListUserCompanyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.nameRoute === 'bootcamp')
-      this.subtitleName = 'Mis Bootcamps';
-    if(this.nameRoute === 'usuario')
-      this.subtitleName = 'Mis Inscripciones';
-    this.bootcampService.getBootcamps()
-    .pipe(takeUntil(this.onDestroy$))
-    .subscribe(
-      (data) => {
-        this.bootcamps = data;
-        this.loading = true;
-      }
-    )
+
+      this.getBootcamps()
+  }
+  getSubtitle() {
+    if (this.nameRoute === 'bootcamp') this.subtitleName = 'Mis Bootcamps';
+    if (this.nameRoute === 'usuario') this.subtitleName = 'Mis Inscripciones';
+  }
+
+  private getBootcamps() {
+    if (this.finished) return;
+    this.bootcampService
+      .getBootcampsQuery(this.batch + 1, this.lastKey)
+      .pipe(tap((rpta: any[]) => {
+        this.lastKey = _.last(rpta)['population'];
+        const newBootcamps = _.slice(rpta, 0, this.batch);
+        const currentBootcamps = this.bootcamps$.getValue();
+        if (this.lastKey == _.last(newBootcamps)['population']) {
+          this.finished = true;
+        }
+
+        this.bootcamps$.next(_.concat(currentBootcamps,newBootcamps));
+      }),take(1)).subscribe();
+  }
+  onScroll() {
+    console.log('estas realizando scroll :)');
+    this.getBootcamps();
   }
 
   ngOnDestroy(): void {
@@ -53,5 +74,4 @@ export class ListUserCompanyComponent implements OnInit, OnDestroy {
   openDialog() {
     this.dialog.open(DialogComponent);
   }
-
 }

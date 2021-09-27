@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
@@ -14,29 +14,29 @@ import { LoginComponent } from './pages/login/login.component';
 import { LandingPagesComponent } from './pages/landing-pages/landing-pages.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
-
-
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll'
 @NgModule({
   declarations: [
     AppComponent,
     ListUserCompanyComponent,
-    DialogComponent
+    DialogComponent,
     LoginComponent,
     UsuarioComponent,
     LandingPagesComponent,
     RegisterFormComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
     AngularFirestoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

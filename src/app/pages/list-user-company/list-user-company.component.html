@@ -4,7 +4,7 @@
     <h3 class="subtitle">{{ subtitleName }}</h3>
     <button class="button" (click)="openDialog()">Crear bootcamp</button>
   </div>
-  <mat-progress-spinner
+  <!-- <mat-progress-spinner
         class="example-margin"
         *ngIf="!loading"
         [color]="color"
@@ -17,5 +17,20 @@
       <p class="description">{{ bootcamp.descripcion }}</p>
       <button class="button action" *ngIf="nameRoute === 'usuario'">Anotarse</button>
     </div>
+  </div> -->
+  {{bootcamps$ |async|json}}
+  <div class="content" *ngFor="let bootcamp of bootcamps$ |async">
+    <h3 class="subtitle">{{ bootcamp.id_empresa }}</h3>
+    <p class="description">{{ bootcamp.descripcion }}</p>
+    <button class="button action" *ngIf="nameRoute === 'usuario'">Anotarse</button>
+  </div>
+  <hr>
+  <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+  </div>
+
+  <mat-progress-spinner class="example-margin" *ngIf="!finished" [color]="color" [mode]="mode" [value]="value">
+  </mat-progress-spinner>
+  <div>
+    Eso es todo amiguitos :)
   </div>
 </div>
